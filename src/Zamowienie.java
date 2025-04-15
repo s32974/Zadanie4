@@ -68,7 +68,7 @@ public class Zamowienie {
 
     }
 
-    public void zastosujZnizke())
+    public void zastosujZnizke()
 
     {
 
