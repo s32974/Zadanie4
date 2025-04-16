@@ -7,6 +7,15 @@ public class Zamowienie {
     private String dataZamowienia;
     private String status;
 
+    public Zamowienie(int id, Klient klient, Produkt[] produkty, int[] ilosci, String dataZamuwienia, String wTrakcieRealizacjii) {
+        this.id = id;
+        this.klient = klient;
+        this.produkty = produkty;
+        this.ilosci = ilosci;
+        this.dataZamowienia = dataZamuwienia;
+        this.status = wTrakcieRealizacjii;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -59,8 +68,8 @@ public class Zamowienie {
         double wartosc = 0;
 
         for (int i = 0; i < produkty.length; i++) {
-            Produkt produkt = produkty[i];
-            wartosc = produkt.getCena() * ilosci[i];
+
+            wartosc += produkty[i].getCena() * ilosci[i];
 
         }
 
@@ -68,15 +77,30 @@ public class Zamowienie {
 
     }
 
-    public void zastosujZnizke()
+    public double zastosujZnizke() {
+        double zniszka = 0;
+        if (klient.isCzyStaly()) {
 
-    {
+            zniszka = 10;
 
+        }
 
+        return zniszka;
     }
 
 
     public void wyswietlSzczegoly() {
+
+
+        System.out.println("Zamuwienie:" + this.id);
+        System.out.println("klijent:" + this.klient.getImie() + " " + klient.getNazwisko());
+        System.out.println("Data zamuwienia:" + this.dataZamowienia);
+        System.out.println("status:" + this.status);
+        for (int i = 0; i < produkty.length; i++) {
+            System.out.println("produkt:" + produkty[i].getNazwa() + " ilość:" + this.ilosci[i] + " cena:" + produkty[i].getCena());
+
+        }
+        obliczWartoscZamowienia();
 
     }
 
